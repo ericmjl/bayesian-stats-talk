@@ -9,13 +9,13 @@ theme: beige
 
 # slides are available online!
 
-- slides: [github.com/ericmjl/bayesian-stats-talk/slides.html][slides]
+- slides: [ericmjl.github.io/bayesian-stats-talk/][slides]
 - html notes: [ericmjl.github.io/bayesian-stats-talk][html]
 - source: [github.com/ericmjl/bayesian-stats-talk][source]
 
 [source]: https://github.com/ericmjl/bayesian-data-analysis-with-pymc3
 [html]: https://ericmjl.github.io/bayesian-data-analysis-with-pymc3
-[slides]: https://github.com/ericmjl/bayesian-data-analysis-with-pymc3/slides.html
+[slides]: https://ericmjl.github.io/bayesian-stats-talk/
 
 # talk features
 
