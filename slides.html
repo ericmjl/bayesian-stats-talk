@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Bayesian Data Analysis with PyMC3</title>
+
+		<link rel="stylesheet" href="revealjs/css/reveal.css">
+        <!-- Allows user to select theme, or else default to beige. -->
+                <link rel="stylesheet" href="revealjs/css/theme/beige.css">
+        
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="revealjs/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'revealjs/css/print/pdf.css' : 'revealjs/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <section id="title" class="slide level1">
+                    <h1>Bayesian Data Analysis with PyMC3</h1>
+                                                            <h2>Eric J. Ma (Department of Biological Engineering, MIT)</h2>
+                                                        </section>
+                <section id="slides-are-available-online" class="slide level1">
+                <h1>slides are available online!</h1>
+                <ul>
+                <li>slides: <a href="https://github.com/ericmjl/bayesian-data-analysis-with-pymc3/slides.html">github.com/ericmjl/bayesian-data-analysis-with-pymc3/slides.html</a></li>
+                <li>html notes: <a href="https://ericmjl.github.io/bayesian-data-analysis-with-pymc3">ericmjl.github.io/bayesian-data-analysis-with-pymc3</a></li>
+                <li>source: <a href="https://github.com/ericmjl/bayesian-data-analysis-with-pymc3">github.com/ericmjl/bayesian-data-analysis-with-pymc3</a></li>
+                </ul>
+                </section>
+                <section id="bayesian-analysis-problems" class="slide level1">
+                <h1>bayesian analysis problems</h1>
+                <section id="biased-coin-problem" class="level2">
+                <h2>biased coin problem</h2>
+                </section>
+                <section id="cookie-jar-problem" class="level2">
+                <h2>cookie jar problem</h2>
+                </section>
+                </section>
+                <section id="probabilistic-programming" class="slide level1">
+                <h1>probabilistic programming</h1>
+                <section id="pymc3" class="level2">
+                <h2>pymc3</h2>
+                </section>
+                </section>
+			</div>
+		</div>
+
+		<script src="revealjs/lib/js/head.min.js"></script>
+		<script src="revealjs/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+                transition: 'convex',
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'revealjs/plugin/markdown/marked.js' },
+					{ src: 'revealjs/plugin/markdown/markdown.js' },
+					{ src: 'revealjs/plugin/notes/notes.js', async: true },
+					{ src: 'revealjs/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>

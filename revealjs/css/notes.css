@@ -1,0 +1,16 @@
+body{
+    font-family: "PT Sans";
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+h1.title{
+
+    font-size: 3rem;
+}
+
+code {
+    background-color: #e8e8e8;
+}
