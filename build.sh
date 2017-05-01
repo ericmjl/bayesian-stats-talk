@@ -1,5 +1,5 @@
 # Run the SCSS build script
-python revealjs/css/theme/source/compile.py
+# python revealjs/css/theme/source/compile.py
 
 # Make HTML notes version of slides
 pandoc slides.md \
