@@ -13,9 +13,9 @@ theme: beige
 - html notes: [ericmjl.github.io/bayesian-stats-talk][html]
 - source: [github.com/ericmjl/bayesian-stats-talk][source]
 
-[source]: https://github.com/ericmjl/bayesian-data-analysis-with-pymc3
-[html]: https://ericmjl.github.io/bayesian-data-analysis-with-pymc3
-[slides]: https://ericmjl.github.io/bayesian-stats-talk/
+[source]: https://github.com/ericmjl/bayesian-stats-talk
+[html]: https://ericmjl.github.io/bayesian-stats-talk
+[slides]: https://ericmjl.github.io/bayesian-stats-talk/slides.html
 
 # talk features
 
