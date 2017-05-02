@@ -33,7 +33,8 @@
                     <h1>$title$</h1>
                     $if(author)$
                     $for(author)$
-                    <h2>$author.name$ ($author.affiliation$)</h2>
+                    <h2>$author.name$</h2>
+                    <h3>$author.affiliation$</h3>
                     $endfor$
                     $endif$
                 </section>

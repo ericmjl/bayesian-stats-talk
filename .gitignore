@@ -1,2 +1,3 @@
 *.DS_Store
 revealjs/css/theme/source/.sass-cache/*
+.sass-cache/*

@@ -45,7 +45,9 @@ $if(subtitle)$
 $endif$
 $if(author)$
 $for(author)$
-<h2 class="author">by $author.name$ ($author.affiliation$)</h2>
+<h2 class="author">$author.name$</h2>
+<br />
+<h3 class="author">($author.affiliation$)</h3>
 $endfor$
 $endif$
 $if(date)$

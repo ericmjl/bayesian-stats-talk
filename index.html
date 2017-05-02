@@ -7,13 +7,52 @@
   <meta name="date" content="2016-12-16" />
   <title>Bayesian Data Analysis with PyMC3</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="revealjs/css/notes.css" type="text/css" />
   <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 </head>
 <body>
 <div id="header">
 <h1 class="title">Bayesian Data Analysis with PyMC3</h1>
-<h2 class="author">by Eric J. Ma (Department of Biological Engineering, MIT)</h2>
+<h2 class="author">Eric J. Ma</h2>
+<br />
+<h3 class="author">(Department of Biological Engineering, MIT)</h3>
 <h3 class="date">16 December 2016</h3>
 </div>
 <div id="TOC">
@@ -22,10 +61,22 @@
 <li><a href="#talk-features">talk features</a><ul>
 <li><a href="#minimal-terminology">minimal terminology</a></li>
 <li><a href="#pareto-principle">pareto principle</a></li>
-</ul></li>
 <li><a href="#not-covered">not covered</a></li>
-<li><a href="#statistical-analysis-problems">statistical analysis problems</a><ul>
-<li><a href="#parameter-estimation">parameter estimation</a></li>
+<li><a href="#assumptions">assumptions</a></li>
+</ul></li>
+<li><a href="#applied-statistical-analysis-problems">applied statistical analysis problems</a></li>
+<li><a href="#parameter-estimation">parameter estimation</a><ul>
+<li><a href="#section"></a></li>
+</ul></li>
+<li><a href="#coin-problem">coin problem</a><ul>
+<li><a href="#problem">problem</a></li>
+<li><a href="#parameters">parameters</a></li>
+<li><a href="#prior">prior</a></li>
+<li><a href="#data">data</a></li>
+<li><a href="#code">code</a></li>
+<li><a href="#results">results</a></li>
+<li><a href="#chemical-activity-problem">chemical activity problem</a></li>
+<li><a href="#section-1"></a></li>
 <li><a href="#comparison-between-experimental-groups">comparison between experimental groups</a></li>
 <li><a href="#biased-coin-problem">biased coin problem</a></li>
 <li><a href="#cookie-jar-problem">cookie jar problem</a></li>
@@ -33,6 +84,7 @@
 <li><a href="#probabilistic-programming">probabilistic programming</a><ul>
 <li><a href="#pymc3">pymc3</a></li>
 </ul></li>
+<li><a href="#resources">resources</a></li>
 </ul>
 </div>
 <h1 id="slides-are-available-online">slides are available online!</h1>
@@ -40,24 +92,66 @@
 <li>slides: <a href="https://ericmjl.github.io/bayesian-stats-talk/slides.html">ericmjl.github.io/bayesian-stats-talk/</a></li>
 <li>html notes: <a href="https://ericmjl.github.io/bayesian-stats-talk">ericmjl.github.io/bayesian-stats-talk</a></li>
 <li>source: <a href="https://github.com/ericmjl/bayesian-stats-talk">github.com/ericmjl/bayesian-stats-talk</a></li>
+<li>notebooks: <a href="https://github.com/ericmjl/bayesian-analysis-recipes">github.com/ericmjl/bayesian-analysis-recipes</a></li>
 </ul>
 <h1 id="talk-features">talk features</h1>
 <h2 id="minimal-terminology">minimal terminology</h2>
 <p>let's focus on the mechanics of analysis, rather than the terminology</p>
 <h2 id="pareto-principle">pareto principle</h2>
 <p>the basics will get you to 80% of what you'll need</p>
-<h1 id="not-covered">not covered</h1>
-<p>&quot;Stuff I am not sufficiently trained in to speak intelligently about.&quot;</p>
+<h2 id="not-covered">not covered</h2>
+<p>stuff I am not sufficiently trained in to speak intelligently about:</p>
 <ul>
-<li>Bayesian nets</li>
-<li>Bayesian deep learning &amp; machine learning</li>
+<li>bayesian nets</li>
+<li>bayesian deep learning &amp; machine learning</li>
+<li>frequentist vs. Bayesian thinking</li>
 </ul>
-<h1 id="statistical-analysis-problems">statistical analysis problems</h1>
-<h2 id="parameter-estimation">parameter estimation</h2>
+<h2 id="assumptions">assumptions</h2>
+<ul>
+<li>familiarity with Python</li>
+<li>knowledge of basic stats terminology:
+<ul>
+<li>mean, variance, &amp; uncertainty</li>
+<li>distributions, parameters</li>
+</ul></li>
+</ul>
+<h1 id="applied-statistical-analysis-problems">applied statistical analysis problems</h1>
+<ul>
+<li>parameter estimation: &quot;is the true value equal to X?&quot;</li>
+<li>comparison between experimental groups: &quot;are the treatments different from the control?&quot;</li>
+</ul>
+<h1 id="parameter-estimation">parameter estimation</h1>
+<h2 id="section"></h2>
+<p>&quot;is the true value equal to X?&quot;</p>
+<p>OR</p>
+<p>&quot;given the data, what is the <strong>most likely value</strong> of the parameter of interest and <strong>uncertainty</strong> surrounding this estimate?&quot;</p>
+<h1 id="coin-problem">coin problem</h1>
+<h2 id="problem">problem</h2>
+<p>I threw my coin 30 times, and it showed came up as heads 11 times. Is it biased?</p>
+<h2 id="parameters">parameters</h2>
+<p>We are most interested in the value <code>p</code>: the <strong>probability of heads</strong>.</p>
+<h2 id="prior">prior</h2>
+<p><br /><span class="math display"><em>p</em> ∼ <em>U</em><em>n</em><em>i</em><em>f</em><em>o</em><em>r</em><em>m</em>(0, 1)</span><br /></p>
+<p><br /><span class="math display"><em>d</em><em>a</em><em>t</em><em>a</em> ∼ <em>B</em><em>e</em><em>r</em><em>n</em><em>o</em><em>u</em><em>l</em><em>l</em><em>i</em>(<em>p</em>)</span><br /></p>
+<h2 id="data">data</h2>
+<p><code>[1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0]</code></p>
+<h2 id="code">code</h2>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">with</span> pm.Model() <span class="im">as</span> model:
+    p <span class="op">=</span> pm.Uniform(<span class="st">&#39;p&#39;</span>, <span class="dv">0</span>, <span class="dv">1</span>)  
+    like <span class="op">=</span> pm.Bernoulli(<span class="st">&#39;likelihood&#39;</span>, p<span class="op">=</span>p, observed<span class="op">=</span>tosses)</code></pre></div>
+<h2 id="results">results</h2>
+<h2 id="chemical-activity-problem">chemical activity problem</h2>
+<h2 id="section-1"></h2>
 <h2 id="comparison-between-experimental-groups">comparison between experimental groups</h2>
 <h2 id="biased-coin-problem">biased coin problem</h2>
 <h2 id="cookie-jar-problem">cookie jar problem</h2>
 <h1 id="probabilistic-programming">probabilistic programming</h1>
 <h2 id="pymc3">pymc3</h2>
+<h1 id="resources">resources</h1>
+<ul>
+<li><a href="https://www.youtube.com/playlist?list=PLDcUM9US4XdMdZOhJWJJD4mDBMnbTWw_z">Statistical Rethinking (YouTube Playlist)</a></li>
+<li><a href="https://pymc-devs.github.io/pymc3/examples.html">PyMC3 Examples</a></li>
+<li></li>
+</ul>
 </body>
 </html>
