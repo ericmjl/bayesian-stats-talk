@@ -13,3 +13,5 @@ dependencies:
 - jupyter
 - jupyterlab
 - pymc3
+- pip:
+  - environment_kernels
