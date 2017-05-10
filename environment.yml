@@ -12,6 +12,8 @@ dependencies:
 - seaborn
 - jupyter
 - jupyterlab
+- ipykernel
 - pymc3
+- rise
 - pip:
   - environment_kernels
