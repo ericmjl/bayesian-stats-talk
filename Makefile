@@ -9,7 +9,4 @@ $(DOCSDIR):
 
 $(HTMLNBS): $(SLIDES) Makefile
 	jupyter nbconvert --to html $<
-	mv slides.html docs/.
-
-	pandoc README.md -o index.html
-	mv index.html docs/.
+	mv slides.html docs/index.html
