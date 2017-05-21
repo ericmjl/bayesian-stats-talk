@@ -1,10 +1,8 @@
 DOCSDIR := docs
 DOCSIMGDIR := $(DOCSDIR)/images
-NOTEBOOKS = $(wildcard *.ipynb)
-HTMLNBS = $(patsubst %.ipynb, %.html, $(NOTEBOOKS))
 INDEX = docs/index.html
 
-all: $(DOCSDIR) $(DOCSIMGDIR) $(HTMLNBS) $(INDEX)
+all: $(DOCSDIR) $(DOCSIMGDIR) $(INDEX)
 
 $(DOCSDIR):
 	mkdir $(DOCSDIR)
@@ -12,8 +10,6 @@ $(DOCSDIR):
 $(DOCSIMGDIR):
 	mkdir $(DOCSIMGDIR)
 
-$(HTMLNBS): $(NOTEBOOKS) Makefile
+docs/index.html: slides.ipynb Makefile
 	jupyter nbconvert --to html $<
-
-docs/index.html: slides.html
-	mv $< $@
+	mv slides.html $@
